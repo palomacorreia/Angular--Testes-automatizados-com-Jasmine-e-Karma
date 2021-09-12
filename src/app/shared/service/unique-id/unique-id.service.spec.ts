@@ -19,13 +19,20 @@ describe(UniqueIdService.name, () => {
         
     });
     
-    it(`#${UniqueIdService.prototype.generatedUniqueIdwithPrefix.name} should not generate duplicate ids when called prefix`, () => {
+    it(`#${UniqueIdService.prototype.generatedUniqueIdwithPrefix.name} should not generate duplicate ids when called`, () => {
         const service = new UniqueIdService();
         const ids = new Set();
         for(let i =0; i<50; i++){
             ids.add(service.generatedUniqueIdwithPrefix('app'));
         }
         expect(ids.size).toBe(50);
+    });   
+    
+    it(`#${UniqueIdService.prototype.getNumbergeneratedUniqueIds.name} should return the number of generatedIds when called`, () => {
+        const service = new UniqueIdService();
+        service.generatedUniqueIdwithPrefix('app');
+        service.generatedUniqueIdwithPrefix('app');
+        expect(service.getNumbergeneratedUniqueIds()).toBe(2);
     });
 
 });

@@ -33,10 +33,12 @@ describe(UniqueIdService.name, () => {
     });    
     
     it(`#${UniqueIdService.prototype.generatedUniqueIdwithPrefix.name} should throw when called with empty`, () => {
-        const emptyValues = [null,undefined, ''];
-        emptyValues.forEach(emptyValues =>{
-            expect(() => service.generatedUniqueIdwithPrefix(emptyValues)).toThrow();
-        })
+        const emptyValues = [null,undefined, '', '1'];
+        emptyValues.forEach(emptyValue =>{
+            expect(() => service.generatedUniqueIdwithPrefix(emptyValue))
+            .withContext(`Empty Value: ${emptyValue}`)
+            .toThrow();
+        });
     });   
     
     it(`#${UniqueIdService.prototype.getNumbergeneratedUniqueIds.name} should return the number of generatedIds when called`, () => {
